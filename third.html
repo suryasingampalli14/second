@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Google Form Style - Student Info</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      background-color: black;
+    }
+
+    form {
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 600px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      background-color: #4285f4;
+      color: white;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #3367d6;
+    }
+
+    .error {
+      color: red;
+      font-size: 13px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<form id="studentForm" onsubmit="return validateForm()">
+  <h2>Student Information Form</h2>
+
+  <div class="form-group">
+    <label for="fullName">Full Name (First Middle Last)*</label>
+    <input type="text" id="fullName" required pattern="^[A-Za-z]+( [A-Za-z]+){1,2}$" title="Enter First Middle Last name with letters only">
+  </div>
+
+  <div class="form-group">
+    <label for="age">Age*</label>
+    <input type="number" id="age" min="1" max="120" required>
+  </div>
+
+  <div class="form-group">
+    <label for="gender">Gender*</label>
+    <select id="gender" required>
+      <option value="">-- Select --</option>
+      <option>Male</option>
+      <option>Female</option>
+      <option>Other</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="bloodGroup">Blood Group*</label>
+    <select id="bloodGroup" required>
+      <option value="">-- Select --</option>
+      <option>A+</option>
+      <option>A-</option>
+      <option>B+</option>
+      <option>B-</option>
+      <option>O+</option>
+      <option>O-</option>
+      <option>AB+</option>
+      <option>AB-</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="college">College Name*</label>
+    <input type="text" id="college" required pattern="[A-Za-z0-9 .,&'-]{3,}" title="Enter valid college name">
+  </div>
+
+  <div class="form-group">
+    <label for="education">Education Level*</label>
+    <select id="education" required>
+      <option value="">-- Select --</option>
+      <option>UG</option>
+      <option>PG</option>
+      <option>Diploma</option>
+      <option>PhD</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="year">Year of Education*</label>
+    <input type="number" id="year"  required>
+  </div>
+  <div class="form-group">
+    <label for="email">Gmail Address*</label>
+    <input type="email" id="email" required placeholder="example@gmail.com">
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+  function validateForm() {
+    const email = document.getElementById("email").value.trim();
+
+    const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+
+    if (!gmailRegex.test(email)) {
+      alert("Enter a valid Gmail address (must end with @gmail.com)");
+      return false;
+    }
+
+    alert("Form submitted successfully!");
+    return true;
+  }
+</script>
+
+</body>
+</html>
