@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact & To-Do APP</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: grey;
+    }
+
+    header {
+      background-color: lightgrey;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 50px;
+      padding: 50px 50px;
+      flex-wrap: wrap;
+    }
+
+    .box {
+      background-color: ivory;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+
+    .box h3 {
+      margin-bottom: 20px;
+    }
+
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .submit-btn {
+      background-color: sienna;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .add-btn {
+      background-color: sienna;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    ul {
+      padding-left: 20px;
+      list-style-type: none;
+    }
+
+    ul li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f0f0f0;
+      padding: 8px;
+      margin-bottom: 5px;
+      border-radius: 4px;
+    }
+
+    .delete-btn {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 4px 8px;
+      cursor: pointer;
+      border-radius: 3px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+
+<div class="container">
+  <!-- Contact Form -->
+  <div class="box">
+    <h3>Contact Us</h3>
+    <input type="text" placeholder="First name" id="name" required>
+    <input type="text" placeholder="Middle name" id="name" required>
+    <input type="text" placeholder="Last name" id="name" required>
+
+    <input type="email" placeholder="Your email" id="email" required>
+    <textarea placeholder="Description" rows="3" id="message" required></textarea>
+    <button class="submit-btn" onclick="submitContact()">Submit</button>
+  </div>
+
+  <!-- To-Do List -->
+  <div class="box">
+    <h3>My To-Do List</h3>
+    <input type="text" placeholder="Add a new task" id="taskInput">
+    <button class="add-btn" onclick="addTask()">Add Task</button>
+    <ul id="taskList"></ul>
+  </div>
+</div>
+
+<script>
+  function submitContact() {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if (name && email && message) {
+      alert("Form filled successfully!");
+      // Optional: Reset form
+      document.getElementById('name').value = "";
+      document.getElementById('email').value = "";
+      document.getElementById('message').value = "";
+    } else {
+      alert("Please fill out all fields.");
+    }
+  }
+
+  function addTask() {
+    const taskInput = document.getElementById("taskInput");
+    const taskList = document.getElementById("taskList");
+
+    if (taskInput.value.trim() !== "") {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <span>${taskInput.value}</span>
+        <button class="delete-btn" onclick="deleteTask(this)">Delete</button>
+      `;
+      taskList.appendChild(li);
+      taskInput.value = "";
+    } else {
+      alert("Please enter a task.");
+    }
+  }
+
+  function deleteTask(button) {
+    const li = button.parentElement;
+    li.remove();
+  }
+</script>
+
+</body>
+</html>
